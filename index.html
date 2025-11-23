@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waresus Sohada Zihad - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0d0221 0%, #0f0f23 50%, #1a0b2e 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 2, 33, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(255, 0, 150, 0.3);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 0, 150, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        nav a.active {
+            color: #ff0080;
+        }
+
+        nav a:hover {
+            color: #ff0080;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff0080, #7928ca, #00d4ff);
+            transition: width 0.3s;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0d0221 0%, #1a0b2e 30%, #2d1b4e 60%, #1e0836 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 0, 128, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(121, 40, 202, 0.2), transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #ff0080, #7928ca, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #b0b0b0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #ff0080, #7928ca, #00d4ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 0, 128, 0.5);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.7);
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(90deg, #ff0080, #7928ca, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #b0b0b0;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff0080 0%, #7928ca 50%, #00d4ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(255, 0, 128, 0.6);
+            border: 2px solid rgba(255, 0, 128, 0.3);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            padding: 1.5rem;
+            background: rgba(26, 11, 46, 0.8);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+        }
+
+        .info-item strong {
+            color: #ff0080;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            padding: 2rem;
+            background: rgba(26, 11, 46, 0.8);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            box-shadow: 0 5px 20px rgba(121, 40, 202, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 0, 128, 0.5);
+            border-color: rgba(255, 0, 128, 0.5);
+        }
+
+        .skill-card h3 {
+            background: linear-gradient(90deg, #ff0080, #7928ca);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card p {
+            color: #b0b0b0;
+        }
+
+        .skill-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            border-radius: 10px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0080, #7928ca, #00d4ff);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(26, 11, 46, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            box-shadow: 0 5px 20px rgba(121, 40, 202, 0.3);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(121, 40, 202, 0.6);
+        }
+
+        .project-img {
+            height: 200px;
+            background: linear-gradient(135deg, #ff0080 0%, #7928ca 50%, #00d4ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            background: linear-gradient(90deg, #ff0080, #7928ca);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 0, 128, 0.2);
+            border: 1px solid rgba(255, 0, 128, 0.4);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #ff0080;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: rgba(26, 11, 46, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ff0080;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(13, 2, 33, 0.7);
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            border-radius: 5px;
+            color: #e0e0e0;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff0080;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            padding: 1rem 2rem;
+            background: linear-gradient(90deg, #ff0080, #7928ca, #00d4ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 0, 128, 0.5);
+        }
+
+        .contact-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0221;
+            color: #b0b0b0;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 0, 128, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-img {
+                width: 200px;
+                height: 200px;
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
+            <li><a id="nav-about" onclick="showPage('about')">About</a></li>
+            <li><a id="nav-skills" onclick="showPage('skills')">Skills</a></li>
+            <li><a id="nav-projects" onclick="showPage('projects')">Projects</a></li>
+            <li><a id="nav-contact" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Waresus Sohada Zihad</h1>
+                <p>Creative Developer & Designer</p>
+                <button class="btn" onclick="showPage('contact')">Get In Touch</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="content-section">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Waresus Sohada Zihad, a passionate developer dedicated to creating innovative and
+                        impactful digital experiences.</p>
+                    <p>With a strong foundation in modern web technologies and a keen eye for design, I bring ideas to
+                        life through clean, efficient code and thoughtful user experiences.</p>
+                    <p>I'm constantly learning and evolving, staying up-to-date with the latest technologies and best
+                        practices in web development.</p>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Location</strong>
+                            <span>Chattogram, Bangladesh</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Education</strong>
+                            <span>BSC in Computer Science & Engineering (ongoing)</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Experience</strong>
+                            <span>Evolving</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Availability</strong>
+                            <span>Open for Projects</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-img">WZ</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Skills Page -->
+    <div id="skills" class="page">
+        <section class="content-section">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Frontend Development</h3>
+                    <p>HTML5, CSS3, responsive design and modern UI/UX principles.</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Backend Development</h3>
+                    <p>Python, databases and server-side architecture.</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 45%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>UI/UX Design</h3>
+                    <p>User interface design, prototyping, wireframing, and visual design principles.</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Database Management</h3>
+                    <p>MySQL and efficient database design and optimization.</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 30%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Version Control</h3>
+                    <p>Git, GitHub, collaborative development.</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 55%"></div>
+                    </div>
+
+                </div>
+        </section>
+    </div>
+
+    <!-- Projects Page -->
+    <div id="projects" class="page">
+        <section class="content-section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Add your projects here -->
+            </div>
+            <p style="text-align: center; font-size: 1.5rem; color: #b0b0b0; margin-top: 3rem;">Will be updated.</p>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="content-section">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" placeholder="Project Inquiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-links">
+                    <a href="mailto:your.email@example.com" class="contact-link">Email Me</a>
+                    <a href="#" class="contact-link">LinkedIn</a>
+                    <a href="#" class="contact-link">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Waresus Sohada Zihad. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            document.getElementById('nav-' + pageId).classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
