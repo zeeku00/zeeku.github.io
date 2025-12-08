@@ -341,17 +341,35 @@
         }
 
         .project-img {
-            height: 200px;
+            height: 150px;
             background: linear-gradient(135deg, #ff0080 0%, #7928ca 50%, #00d4ff 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 4rem;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-img::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: projectGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes projectGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, 20px) scale(1.1); }
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 1.2rem;
         }
 
         .project-content h3 {
@@ -360,11 +378,14 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.5rem;
+            font-size: 1.3rem;
         }
 
         .project-content p {
             color: #b0b0b0;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .project-tags {
@@ -527,11 +548,11 @@
                         </div>
                         <div class="info-item">
                             <strong>Education</strong>
-                            <span>BSC in Computer Science & Engineering. (Ongoing)</span>
+                            <span>Computer Science</span>
                         </div>
                         <div class="info-item">
-                            <strong>Evolving</strong>
-                            
+                            <strong>Experience</strong>
+                            <span>3+ Years</span>
                         </div>
                         <div class="info-item">
                             <strong>Availability</strong>
@@ -603,17 +624,14 @@
                 <div class="project-card">
                     <div class="project-img">✨</div>
                     <div class="project-content">
-                        <h3>TaskFlow Pro - To-Do List</h3>
-                        <p>A stunning task management app featuring glassmorphism design, smooth animations, and full CRUD operations. Includes task statistics, keyboard shortcuts, and persistent local storage.</p>
+                        <h3>TaskFlow Pro</h3>
+                        <p>Beautiful task manager with glassmorphism design, animations, and local storage.</p>
                         <div class="project-tags">
                             <span class="tag">JavaScript</span>
-                            <span class="tag">HTML5</span>
                             <span class="tag">CSS3</span>
-                            <span class="tag">Local Storage</span>
                             <span class="tag">Animations</span>
-                            <span class="tag">Responsive</span>
                         </div>
-                        <button class="btn" style="margin-top: 1rem; width: 100%;" onclick="window.open('https://zeeku00.github.io/To-Do-list/', '_blank')">🚀 View Live Demo</button>
+                        <button class="btn" style="margin-top: 0.8rem; width: 100%; padding: 10px;" onclick="window.open('https://zeeku00.github.io/To-Do-list/', '_blank')">🚀 View Demo</button>
                     </div>
                 </div>
             </div>
@@ -648,9 +666,8 @@
                 </div>
                 
                 <div class="contact-links">
-                    <a href="mailto:your.email@example.com" class="contact-link">Email Me</a>
-                    <a href="#" class="contact-link">LinkedIn</a>
-                    <a href="#" class="contact-link">GitHub</a>
+                    <a href="mailto:your.email@example.com" class="contact-link">📧 Email Me</a>
+                    <a href="https://github.com/zeeku00" target="_blank" class="contact-link">💻 GitHub</a>
                 </div>
             </div>
         </section>
@@ -680,4 +697,3 @@
     </script>
 </body>
 </html>
-
